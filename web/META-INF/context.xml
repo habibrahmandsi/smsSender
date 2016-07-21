@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context path="/smsSender/">
+</Context>
+
+<!--
+<Context path="/smsSender" docBase="/home/habib/PersonalProject/smsSender/out/artifacts/test_app_war_exploded">
+</Context>-->

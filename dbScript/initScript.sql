@@ -1,0 +1,3 @@
+
+ALTER TABLE user MODIFY password text;
+INSERT INTO `smsSenderDb`.`user` (`id`, `created`, `created_by`, `modified`, `modified_by`, `is_active`, `address`, `age`, `currentSalary`, `date_of_birth`, `email`, `father_name`, `joining_date`, `max_discount_percent`, `mother_name`, `name`, `national_id_no`, `password`, `profile_picture_path`, `religion`, `role`, `sex`, `starting_salary`, `user_name`, `user_type`) VALUES (NULL, NULL, NULL, NULL, NULL, b'1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL, 'admin', NULL, NULL, 'ROLE_ADMIN', NULL, NULL, 'admin', NULL);

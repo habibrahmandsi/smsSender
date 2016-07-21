@@ -1,0 +1,151 @@
+
+/* Created by : Md.Habibur Rahman */
+
+#XwebcamXobjectX{
+    border:2px solid #ccc;
+    border-radius: 5px;
+}
+
+.breadcrumb{
+    margin-bottom:5px;
+}
+.webCamWrapper{
+    -webkit-margin-end: 20px;
+    -webkit-margin-before: 0px !important;
+    margin-right: 20px;
+    margin-left: 0px !important;
+
+}
+/*.customFlexigridCss select{
+    *//*background-color : transparent;*//*
+    broder : not ;
+    width : auto;
+}
+.customFlexigridCss select, input[type="file"]{
+    *//*height: auto;*//*
+    line-height: normal;
+}
+.customFlexigridCss select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+
+    display: inline ;
+    font-size: medium;
+
+    padding: 0;
+    *//*background: transparent;*//*
+    border-radius: 4px;
+    vertical-align: baseline;
+    box-shadow: none;
+    *//*height: auto;*//*
+    line-height: normal;
+
+}
+
+.customFlexigridCss input,.customFlexigridCss button,.customFlexigridCss select,.customFlexigridCss textarea {
+    font-family:not specified;
+}
+
+.customFlexigridCss select{
+    margin-bottom: 0px !important;
+}
+.customFlexigridCss input[type="text"]   {
+    margin-top: 3px !important;
+}
+.customFlexigridCss  .sDiv2 select , .customFlexigridCss  .pGroup select {
+    height: 20px;
+}*/
+.flexigrid .bDiv *{
+font-size: 12px;
+}
+.flexigrid .hDivBox table thead tr th div{
+    font-size: 13px;
+}
+
+.flexigrid .pGroup .rp{
+height: 26px;
+}
+.tableImgView{
+    width: 22px;
+}
+
+.borderDiv{
+    background-color: #f9f9f9;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+
+}
+.infoShowDiv{
+    width: 90%;
+}
+.table{
+font-size: 12px !important;
+}
+.crossIcon{
+    width: 23px;
+    cursor: pointer;
+}
+.addIcon{
+    width: 27px;
+    cursor: pointer;
+}
+.alert{
+    margin-bottom: 5px !important;
+}
+.modal-header .close{
+    padding: 16px;
+}
+.modal-header{
+    border-radius:10px 10px 0 0;
+}
+.modal-footer{
+    border-radius:0 0 10px 10px;
+}
+.createNewBtnWrapperDiv{
+    text-align: right;
+    padding: 5px;
+}
+.stdInfoWrapperDiv{
+    display:inline-block;
+    padding: 20px 20px;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+
+}
+.studentProfilePic{
+    float: right;
+    border: 2px solid #e7e7e7;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.studentInfoDiv{
+    float: left;
+    margin-right: 10px;
+}
+.studentInfoDiv table tr td:first-child{
+    text-align: right;
+    color: #747474;
+
+}
+.stdPhotoImg{
+    width: 100px;
+}
+table{
+    font-size: 12px;
+    color: #333;
+}
+
+.studentProfilePic .imgMask i{
+    font-size: 20px;
+}
+.studentProfilePic .imgSettings{
+    font-size: 10px;
+    line-height: 14px;
+}
+form.form-horizontal.contentForm .control-group{
+    padding-bottom: 5px;
+}
+.form-horizontal .control-group{
+    margin-bottom: 5px;
+}
