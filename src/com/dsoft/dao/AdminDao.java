@@ -1,9 +1,6 @@
 package com.dsoft.dao;
 
-import com.dsoft.entity.AbstractBaseEntity;
-import com.dsoft.entity.Person;
-import com.dsoft.entity.ProductKeyValidation;
-import com.dsoft.entity.User;
+import com.dsoft.entity.*;
 
 import java.util.List;
 
@@ -22,4 +19,11 @@ public interface AdminDao {
     Person getPerson(Long personId) throws Exception;
     void deletePerson(Person person) throws Exception;
     int getPersonEntitySize() throws Exception;
+    List<Person> getPersonList() throws Exception;
+
+    Group getGroup(Long groupId) throws Exception;
+    void deleteGroup (Group  group) throws Exception;
+    int getGroupEntitySize() throws Exception;
+    List<GroupMember> getGroupPersonList(Long groupId) throws Exception;
+    void saveOrUpdateGroup(Group group) throws Exception;
    }

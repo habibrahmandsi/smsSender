@@ -21,12 +21,10 @@ public class AdminJdbcServiceImpl implements AdminJdbcService {
         return  adminJdbcDao.getPartialDataList( page, rp ,qtype, query,   sortname,   sortorder,className);
     }
 
-    @Override
     public List getPartialDataListWithJoinQuery(int page, int rp, String qtype, String query, String sortname, String sortorder, String className, String joinQuery) {
         return adminJdbcDao.getPartialDataListWithJoinQuery(page, rp, qtype, query, sortname, sortorder, className, joinQuery);
     }
 
-    @Override
     public Map<String, Object> getUsers(Integer start, Integer length, String sortColName, String sortType, String searchKey) throws Exception{
         return adminJdbcDao.getUsers(start, length, sortColName, sortType, searchKey);
     }
@@ -35,8 +33,12 @@ public class AdminJdbcServiceImpl implements AdminJdbcService {
         adminJdbcDao.deleteEntityByAnyColValue(tableName, colName, colValue);
     }
 
-    @Override
     public Map<String, Object> getPersons(Integer start, Integer length, String sortColName, String sortType, String searchKey) throws Exception{
         return adminJdbcDao.getPersons(start, length, sortColName, sortType, searchKey);
+    }
+
+
+    public Map<String, Object> getGroups(Integer start, Integer length, String sortColName, String sortType, String searchKey) throws Exception{
+        return adminJdbcDao.getGroups(start, length, sortColName, sortType, searchKey);
     }
 }

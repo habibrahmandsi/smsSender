@@ -57,7 +57,7 @@ public class Utils {
     private static Cipher dcipher;
     public static Integer globalCounter=0;
     private static final String ALGO = "AES";
-    public static String AppName = "Point Of Sale";
+    public static String AppName = "SMS Sender";
 
   	@SuppressWarnings("unchecked")
 	public static boolean isInRole(String roleName){

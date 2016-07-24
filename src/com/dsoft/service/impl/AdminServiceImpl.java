@@ -1,10 +1,7 @@
 package com.dsoft.service.impl;
 
 import com.dsoft.dao.AdminDao;
-import com.dsoft.entity.AbstractBaseEntity;
-import com.dsoft.entity.Person;
-import com.dsoft.entity.ProductKeyValidation;
-import com.dsoft.entity.User;
+import com.dsoft.entity.*;
 import com.dsoft.service.AdminService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +70,29 @@ public class AdminServiceImpl implements AdminService {
 
     public int getPersonEntitySize() throws Exception {
         return adminDao.getPersonEntitySize();
+    }
+
+    public  List<Person> getPersonList() throws Exception{
+        return adminDao.getPersonList();
+    }
+
+    public Group getGroup(Long groupId) throws Exception {
+        return adminDao.getGroup(groupId);
+    }
+
+    public void deleteGroup(Group group) throws Exception{
+        adminDao.deleteGroup(group);
+    }
+
+    public int getGroupEntitySize() throws Exception{
+        return adminDao.getPersonEntitySize();
+    }
+
+    public List<GroupMember> getGroupPersonList(Long groupId) throws Exception{
+        return adminDao.getGroupPersonList(groupId);
+    }
+
+    public void saveOrUpdateGroup(Group group) throws Exception{
+        adminDao.saveOrUpdateGroup(group);
     }
 }

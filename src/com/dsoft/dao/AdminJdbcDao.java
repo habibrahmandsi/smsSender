@@ -12,5 +12,5 @@ public interface AdminJdbcDao {
     void deleteEntityByAnyColValue(String tableName,String colName, String colValue) throws Exception;
 
     Map<String, Object> getPersons(Integer start, Integer length, String sortColName, String sortType, String searchKey) throws Exception ;
-
+    Map<String, Object> getGroups(Integer start, Integer length, String sortColName, String sortType, String searchKey) throws Exception;
 }

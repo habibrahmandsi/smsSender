@@ -1,29 +1,22 @@
 package com.dsoft.dao.impl;
 
 import com.dsoft.dao.AdminDao;
-import com.dsoft.dao.AdminJdbcDao;
 import com.dsoft.entity.*;
 import com.dsoft.service.AdminJdbcService;
-import com.dsoft.service.AdminService;
-import com.dsoft.util.Constants;
 import com.dsoft.util.Utils;
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.nio.DoubleBuffer;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Repository("adminDao")
@@ -151,6 +144,93 @@ public class AdminDaoImpl implements AdminDao {
         return 0;
     }
 
+    public List<Person> getPersonList() throws Exception{
+        List<Person> personList = null;
+        DetachedCriteria cr = DetachedCriteria.forClass(Person.class);
+        cr.addOrder(Order.asc("name"));
+        personList = hibernateTemplate.findByCriteria(cr);
+        return personList;
+    }
+
+    public Group getGroup(Long groupId) throws Exception {
+        Session session = getSession();
+        Query query = session.createQuery("FROM Group WHERE id = :id");
+        query.setParameter("id", groupId);
+        Object object = query.uniqueResult();
+        if (object != null)
+            return (Group) object;
+        return null;
+    }
+
+    public void deleteGroup(Group group) throws Exception{
+        hibernateTemplate.delete(group);
+    }
+
+    public int getGroupEntitySize() throws Exception{
+        Session session = getSession();
+        String sql = "Select count(*) From Group";
+
+        Query query = session.createQuery(sql);
+        List list = query.list();
+
+        if (list != null && list.size() > 0) {
+            return Integer.parseInt((list.get(0)).toString());
+
+        }
+        return 0;
+    }
+
+    public List<GroupMember> getGroupPersonList(Long groupId) throws Exception{
+        List<GroupMember> groupPersonList = null;
+
+        if(groupId > 0){
+            groupPersonList = hibernateTemplate.find("FROM GroupMember WHERE group.id= ? ", groupId);
+        }else{
+            groupPersonList = hibernateTemplate.find("FROM RolePermission");
+        }
+
+        if (groupPersonList != null && groupPersonList.size() > 0){
+            return groupPersonList;
+        }
+        return null;
+    }
 
 
+    public void deleteGroupMember(List<GroupMember> groupMemberList) throws Exception{
+        logger.debug(":: DELETE deleteGroupMember ITEM ::");
+        GroupMember groupMember = null;
+        if (groupMemberList != null && groupMemberList.size() > 0) {
+            for (int i = 0; i < groupMemberList.size(); i++) {
+                groupMember = groupMemberList.get(i);
+                logger.debug("SMNLOG:groupMember Item id:" + groupMember.getId());
+                hibernateTemplate.delete(groupMember);
+            }
+        }
+    }
+
+    public void saveOrUpdateGroup(Group group) throws Exception{
+
+        hibernateTemplate.saveOrUpdate(group);
+        GroupMember groupMember = null;
+        if(group.getId() != null && group.getId() > 0){
+            List<GroupMember> groupMemberList = this.getGroupPersonList(group.getId());
+            this.deleteGroupMember(groupMemberList);
+        }
+        logger.debug("SMNLOG:Previous role permission was deleted");
+        List<Person> personList = group.getPersonList() != null ? group.getPersonList() : new ArrayList<Person>();
+
+        if (!Utils.isEmpty(personList)) {
+            for (Person person : personList) {
+                logger.debug("SMNLOG:: person::"+person);
+                if (person != null && person.getId() != null
+                        && person.getActive()) {
+                    groupMember = new GroupMember();
+                    groupMember.setPerson(person);
+                    groupMember.setGroup(group);
+                    hibernateTemplate.save(groupMember);
+                }
+            }
+        }
+
+    }
 }

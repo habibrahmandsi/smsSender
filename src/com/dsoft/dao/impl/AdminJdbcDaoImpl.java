@@ -9,6 +9,7 @@ package com.dsoft.dao.impl;
  */
 
 import com.dsoft.dao.AdminJdbcDao;
+import com.dsoft.util.Constants;
 import com.dsoft.util.Utils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,4 +182,48 @@ public class AdminJdbcDaoImpl implements AdminJdbcDao {
         return result;
     }
 
+    public Map<String, Object> getGroups(Integer start, Integer length, String sortColName, String sortType, String searchKey) throws Exception {
+        Map<String, Object> result = new HashMap();
+        String sql ="SELECT g.id, g.name,COUNT(p.name) totalMember,"
+                +"GROUP_CONCAT"
+                +"(DISTINCT CONCAT"
+                +"(COALESCE(p.name,''),'"+Constants.COLUMN_SEPARATOR+"',"
+                +" COALESCE(p.mobile_no,''))"
+                +" ORDER BY p.name"
+                +" SEPARATOR '"+Constants.ROW_SEPARATOR+"'"
+                +" ) member "
+                + "FROM contact_group g "
+                + "JOIN group_member gm ON(g.id = gm.group_id) "
+                + "JOIN person p ON(p.id = gm.person_id) WHERE 1=1";
+
+        logger.debug("SMNLOG: searchKey:" + searchKey + " length:" + length);
+
+        if (!Utils.isEmpty(searchKey)) {
+            sql = sql + " AND g.name LIKE ? "
+                      + " OR p.name LIKE ?"
+                      + " OR p.mobile_no LIKE ?";
+        }
+        sql = sql + " GROUP BY g.name";
+        sql = sql + " ORDER BY " + sortColName + " " + sortType + " LIMIT ?, ? ";
+
+
+        List paramList = new ArrayList();
+        if (!Utils.isEmpty(searchKey)) {
+            paramList.add(searchKey + "%");
+            paramList.add(searchKey + "%");
+            paramList.add(searchKey + "%");
+        }
+
+        paramList.add(start);
+        paramList.add(length);
+        logger.debug("SMNLOG:sql:" + sql);
+
+        List list = jdbcTemplate.queryForList(sql, paramList.toArray());
+        result.put("data", list);
+        if (list != null && list.size() > 0)
+            result.put("total", list.size());
+        else
+            result.put("total", 0);
+        return result;
+    }
 }

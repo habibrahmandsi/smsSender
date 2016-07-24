@@ -3,6 +3,7 @@ package com.dsoft.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @Author: Md. Habibur Rahman on 25/07/15.
@@ -30,6 +31,12 @@ public class Person extends AbstractBaseEntity{
     @Column(name = "address")
     private String address;
 
+
+    @Transient
+    private Boolean active;
+
+    @Transient
+    private Boolean saved;
 
     public String getName() {
         return name;
@@ -77,6 +84,22 @@ public class Person extends AbstractBaseEntity{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Boolean getSaved() {
+        return saved;
+    }
+
+    public void setSaved(Boolean saved) {
+        this.saved = saved;
     }
 
     @Override

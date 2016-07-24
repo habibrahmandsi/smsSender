@@ -1,6 +1,5 @@
 # smsSender
-This is a complete solutions for managing the pharmaceuticals shop. The daily purchase and sale report you can see in line chart view, total profit per day or a specific date range, new medicine/medicine group entry.
-Key elements of this project are `Spring MVC 3.1`,`Bootstrap 3.0` and `D3 js for report` .
+This is a complete solutions for sending bulk sms to a group of peoples.Key elements of this project are `Spring MVC 3.1`,`Bootstrap 3.0` .
 
 # Prerequisites
 The following items should be installed in your system before starting work using this api
